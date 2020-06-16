@@ -1,0 +1,22 @@
+name: bootcamp2020
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: installing node
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12 #jkhkjhkjh  
+      
+    - name: installing surge
+      run: npm install --global surge
+    - name: Deploying using surge
+      run: surge ./ "http://bootcamp2020_hamza.surge.sh/" --token $ {{secrets.surge_token}}
